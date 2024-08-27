@@ -3,7 +3,11 @@ import csv
 import json
 import io
 
-app = Flask(__name__)
+app = Flask(
+  __name__,
+  static_folder='public',
+  static_url_path='/'
+)
 
 # 讀取 CSV 文件並轉換為 JSON
 def csv_to_json(file_content):
@@ -65,6 +69,7 @@ def index():
     # 簡單的上傳表單
     return '''
     <!doctype html>
+    <a href="/dataset.csv">範例檔案下載</a>
     <title>CSV to JSONL Converter</title>
     <h1>Upload a CSV file to convert to JSONL</h1>
     <form method=post enctype=multipart/form-data>
